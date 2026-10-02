@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>>ABINASH // RETRO-CYBERPUNK PORTFOLIO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Almendra:ital,wght@0,400;0,700;1,400&family=Audiowide&family=Comforter&family=Libre+Caslon+Condensed:ital,wght@0,400;0,700;1,400&family=Stalinist+One&family=Uncial+Antiqua&family=Noto+Sans+JP:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: 
+                linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.35) 50%),
+                linear-gradient(90deg, rgba(255, 0, 0, 0.04), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.04));
+            z-index: 100;
+            background-size: 100% 4px, 3px 100%;
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        body {
+            margin: 0;
+            background-color: #000;
+            overflow-y: auto;
+            overflow-x: hidden;
+            font-family: 'Courier New', Courier, monospace;
+            position: relative;
+            color: #ff8080;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ff0000;
+            box-shadow: 0 0 8px #ff0000;
+            border-radius: 4px;
+        }
+
+        pre#dna {
+            font-size: 11px;
+            line-height: 1.05;
+            transform: rotate(0deg) scale(1.3);
+            transform-origin: center center;
+            margin: 0;
+        }
+        .c-yellow { color: #ffcc00; text-shadow: 0 0 4px #ffcc00, 0 0 8px #ff9900; }
+        .c-orange { color: #ff6600; text-shadow: 0 0 6px #ff6600, 0 0 12px #ff3300; }
+        .c-red    { color: #ff0000; text-shadow: 0 0 6px #ff0000, 0 0 12px #cc0000; }
+        .c-dark-red { color: #990000; }
+
+        .retro-nav {
+            position: fixed;
+            top: 0;
+            left: calc(50% + 280px);
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 680px;
+            background: rgba(5, 0, 0, 0.85);
+            backdrop-filter: blur(5px);
+            border-bottom: 2px solid #ff0000;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
+            z-index: 90;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 12px 24px;
+            box-sizing: border-box;
+        }
+        .retro-nav a {
+            color: #ff8080;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 4px rgba(255, 0, 0, 0.5);
+        }
+        .retro-nav a:hover {
+            color: #ffffff;
+            text-shadow: 0 0 8px #ff0000, 0 0 15px #ff0000;
+        }
+
+        .portfolio-container {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+            width: 100%;
+            max-width: 680px;
+        }
+
+        .intro-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .prompt-symbol, .im-text {
+            font-size: 38px;
+            font-weight: bold;
+            color: #ff0000;
+            text-shadow: 0 0 6px #ff0000, 0 0 12px #ff0000;
+            letter-spacing: 1px;
+        }
+
+        .crt-box {
+            border: 3px solid #ff0000;
+            padding: 32px;
+            background-color: #050000;
+            box-shadow: 
+                inset 0 0 25px rgba(255, 0, 0, 0.4),
+                0 0 15px rgba(255, 0, 0, 0.5);
+            position: relative;
+            box-sizing: border-box;
+            width: 100%;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            
+            min-height: 260px;
+            max-height: 260px;
+            overflow: hidden;
+            
+            opacity: 0;
+            transform: scale(0.9) translateY(20px);
+            animation: boxIntro 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: 0.3s;
+        }
+
+        .crt-section-box {
+            border: 3px solid #ff0000;
+            padding: 28px;
+            background-color: #050000;
+            box-shadow: 
+                inset 0 0 20px rgba(255, 0, 0, 0.3),
+                0 0 12px rgba(255, 0, 0, 0.4);
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .name-box {
+            border: 3px solid #ff0000;
+            padding: 10px 22px;
+            background-color: rgba(255, 0, 0, 0.05);
+            box-shadow: 
+                inset 0 0 12px rgba(255, 0, 0, 0.7),
+                0 0 10px rgba(255, 0, 0, 0.7);
+            border-radius: 8px;
+            display: inline-block;
+            position: relative;
+            
+            opacity: 0;
+            transform: scale(0.8) translateX(-15px);
+            animation: boxIntro 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        
+        .font-opt-0 { font-family: 'Libre Caslon Condensed', serif; letter-spacing: 2px; }
+        .font-opt-1 { font-family: 'Uncial Antiqua', cursive; letter-spacing: 2px; }
+        .font-opt-2 { font-family: 'Audiowide', cursive; letter-spacing: 2px; }
+        .font-opt-3 { font-family: 'Stalinist One', cursive; letter-spacing: 1px; }
+        .font-opt-4 { font-family: 'Almendra', serif; letter-spacing: 2px; }
+        .font-opt-5 { font-family: 'Comforter', cursive; letter-spacing: 1px; font-size: 1.15em; }
+        .font-opt-jp { font-family: 'Noto Sans JP', sans-serif; letter-spacing: 2px; }
+
+        .name-box span {
+            font-size: 40px;
+            font-weight: bold;
+            color: #ffffff;
+            text-shadow: 
+                0 0 5px #ffffff,
+                0 0 8px #ff0000,
+                0 0 18px #ff0000;
+            transition: all 0.1s ease;
+        }
+
+        @keyframes sciFiGlitch {
+            0% {
+                transform: translate(0);
+                text-shadow: 0 0 5px #ffffff, 0 0 8px #ff0000, 0 0 18px #ff0000;
+                filter: none;
+            }
+            20% {
+                transform: translate(-4px, 2px) skewX(-10deg);
+                text-shadow: 3px 0 #00ffff, -3px 0 #ff0055, 0 0 15px #ff0000;
+                filter: contrast(200%) brightness(150%);
+            }
+            40% {
+                transform: translate(4px, -2px) skewX(15deg);
+                text-shadow: -4px 0 #00ff00, 4px 0 #ff0000, 0 0 20px #00ffff;
+                filter: hue-rotate(90deg) blur(1px);
+            }
+            60% {
+                transform: translate(-2px, -3px) scaleY(1.1);
+                text-shadow: 2px -2px #ff0000, -2px 2px #0000ff, 0 0 10px #ffffff;
+                filter: invert(20%);
+            }
+            80% {
+                transform: translate(3px, 3px) skewX(-5deg);
+                text-shadow: -3px 0 #ffff00, 3px 0 #ff00ff;
+                filter: none;
+            }
+            100% {
+                transform: translate(0);
+                text-shadow: 0 0 5px #ffffff, 0 0 8px #ff0000, 0 0 18px #ff0000;
+                filter: none;
+            }
+        }
+
+        .glitch-active {
+            animation: sciFiGlitch 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        }
+
+        @keyframes boxIntro {
+            0% {
+                opacity: 0;
+                transform: scale(0.85) translateY(15px);
+                filter: blur(4px);
+            }
+            50% {
+                opacity: 0.8;
+                filter: blur(1px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+                filter: blur(0);
+            }
+        }
+
+        .bio-box p {
+            margin: 0;
+            font-size: 15px;
+            line-height: 1.6;
+            color: #ff8080;
+            text-shadow: 0 0 3px rgba(255, 128, 128, 0.8);
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            white-space: pre-wrap;
+        }
+
+        .cursor {
+            display: inline-block;
+            background-color: #ff0000;
+            width: 9px;
+            height: 18px;
+            vertical-align: middle;
+            animation: blink-cursor 0.7s infinite;
+            box-shadow: 0 0 8px #ff0000;
+            margin-left: 2px;
+        }
+
+        @keyframes blink-cursor {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffffff;
+            text-shadow: 0 0 8px #ff0000, 0 0 15px #ff0000;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px dashed rgba(255, 0, 0, 0.4);
+            padding-bottom: 10px;
+        }
+
+        .retro-btn {
+            border: 2px solid #ff0000;
+            background: rgba(255, 0, 0, 0.1);
+            color: #ffffff;
+            padding: 8px 16px;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            text-shadow: 0 0 5px #ff0000;
+            box-shadow: inset 0 0 8px rgba(255,0,0,0.5), 0 0 5px rgba(255,0,0,0.5);
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .retro-btn:hover {
+            background: rgba(255, 0, 0, 0.3);
+            box-shadow: inset 0 0 12px rgba(255,0,0,0.8), 0 0 10px #ff0000;
+            transform: translateY(-2px);
+        }
+
+        .skill-tag {
+            border: 1px solid #ff0000;
+            background: rgba(255, 0, 0, 0.05);
+            color: #ffcccc;
+            padding: 6px 12px;
+            font-size: 13px;
+            border-radius: 4px;
+            text-shadow: 0 0 3px rgba(255, 0, 0, 0.5);
+            box-shadow: inset 0 0 5px rgba(255,0,0,0.2);
+            display: inline-block;
+        }
+
+        .project-card-sargon {
+            border: 1px solid rgba(255, 102, 0, 0.6);
+            transition: all 0.3s ease;
+        }
+        .project-card-sargon:hover {
+            border-color: #ff6600;
+            box-shadow: inset 0 0 20px rgba(255, 102, 0, 0.4), 0 0 20px #ff6600;
+            transform: translateY(-3px);
+        }
+
+        .project-card-pyseek {
+            border: 1px solid rgba(0, 255, 102, 0.6);
+            transition: all 0.3s ease;
+        }
+        .project-card-pyseek:hover {
+            border-color: #00ff66;
+            box-shadow: inset 0 0 20px rgba(0, 255, 102, 0.4), 0 0 20px #00ff66;
+            transform: translateY(-3px);
+        }
+
+        .project-card-cerebdx {
+            border: 1px solid rgba(0, 119, 255, 0.6);
+            transition: all 0.3s ease;
+        }
+        .project-card-cerebdx:hover {
+            border-color: #0077ff;
+            box-shadow: inset 0 0 20px rgba(0, 119, 255, 0.4), 0 0 20px #0077ff;
+            transform: translateY(-3px);
+        }
+
+        .project-card-denzel {
+            border: 1px solid rgba(187, 102, 255, 0.6);
+            transition: all 0.3s ease;
+        }
+        .project-card-denzel:hover {
+            border-color: #bb66ff;
+            box-shadow: inset 0 0 20px rgba(187, 102, 255, 0.4), 0 0 20px #bb66ff;
+            transform: translateY(-3px);
+        }
+
+        .extra-skill-card {
+            border: 1px solid rgba(255, 0, 0, 0.6);
+            background: rgba(255, 0, 0, 0.03);
+            transition: all 0.3s ease;
+        }
+        .extra-skill-card:hover {
+            border-color: #ff0000;
+            box-shadow: inset 0 0 15px rgba(255, 0, 0, 0.4), 0 0 15px #ff0000;
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="retro-nav">
+        <div class="hidden md:flex gap-6 text-sm">
+            <a href="#about">&gt; _about</a>
+            <a href="#projects">&gt; _projects</a>
+            <a href="#skills">&gt; _skills</a>
+            <a href="#experience">&gt; _experience</a>
+            <a href="#socials">&gt; _socials</a>
+        </div>
+        <div class="flex md:hidden gap-3 text-xs">
+            <a href="#projects">Proj</a>
+            <a href="#skills">Skills</a>
+            <a href="#socials">Socials</a>
+        </div>
+    </nav>
+
+    <div class="min-h-screen w-full flex flex-col lg:flex-row items-center justify-center pt-24 pb-16 px-4 md:px-12 gap-10 lg:gap-16">
+        
+        <div class="flex flex-col items-center justify-center">
+            <pre id="dna"></pre>
+        </div>
+
+        <div class="portfolio-container" id="about">
+            <div class="intro-header">
+                <span class="prompt-symbol">&gt;</span>
+                <span class="im-text">I'm</span>
+                <div class="name-box">
+                    <span id="glitch-name-span" class="font-opt-0">ABINASH</span>
+                </div>
+            </div>
+
+            <div class="crt-box bio-box">
+                <p id="typed-text"><span class="cursor"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <section id="projects" class="w-full max-w-6xl mx-auto px-4 py-12">
+        <div class="crt-section-box">
+            <div class="section-title">
+                <span class="text-red-500">&gt;</span> 01. FEATURED_PROJECTS // AI & ML
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                <div class="project-card-sargon bg-black/60 p-5 rounded flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-white font-bold text-lg tracking-wide text-shadow-[0_0_5px_#ff6600]">S.A.R.G.O.N</h3>
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs text-orange-400 border border-orange-800 px-2 py-0.5 rounded">Python & Flask</span>
+                                <a href="https://github.com" target="_blank" class="text-orange-400 hover:text-white transition-colors text-base" title="Project Link"><i class="fa-solid fa-link"></i></a>
+                            </div>
+                        </div>
+                        <p class="text-sm text-red-200/90 leading-relaxed mb-4">
+                            A local, custom-themed AI desktop interface powered by Python, Flask, and webview, integrating LLM via the OpenRouter API to deliver a responsive, secure, and interactive user experience.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Flask</span>
+                        <span class="skill-tag">OpenRouter API</span>
+                    </div>
+                </div>
+
+                <div class="project-card-pyseek bg-black/60 p-5 rounded flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-white font-bold text-lg tracking-wide text-shadow-[0_0_5px_#00ff66]">PySeek</h3>
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs text-emerald-400 border border-emerald-800 px-2 py-0.5 rounded">Multi-AI Search</span>
+                                <a href="https://github.com" target="_blank" class="text-emerald-400 hover:text-white transition-colors text-base" title="Project Link"><i class="fa-solid fa-link"></i></a>
+                            </div>
+                        </div>
+                        <p class="text-sm text-red-200/90 leading-relaxed mb-4">
+                            Python-based multi-AI search engine designed to aggregate, synthesize, and rank intelligent web results. It leverages concurrent model inference to deliver precise, context-aware information retrieval and dynamic summaries.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Search Inference</span>
+                        <span class="skill-tag">NLP</span>
+                    </div>
+                </div>
+
+                <div class="project-card-cerebdx bg-black/60 p-5 rounded flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-white font-bold text-lg tracking-wide text-shadow-[0_0_5px_#0077ff]">CerebDX</h3>
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs text-blue-400 border border-blue-800 px-2 py-0.5 rounded">Deep Learning</span>
+                                <a href="https://github.com" target="_blank" class="text-blue-400 hover:text-white transition-colors text-base" title="Project Link"><i class="fa-solid fa-link"></i></a>
+                            </div>
+                        </div>
+                        <p class="text-sm text-red-200/90 leading-relaxed mb-4">
+                            An advanced deep learning-driven web application designed to analyze MRI scans for rapid, automated brain tumor classification and detection. It leverages robust neural network architectures to accurately categorize tumor types, assisting medical professionals with streamlined diagnostic workflows.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag">Deep Learning</span>
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">Medical Imaging</span>
+                    </div>
+                </div>
+
+                <div class="project-card-denzel bg-black/60 p-5 rounded flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-white font-bold text-lg tracking-wide text-shadow-[0_0_5px_#bb66ff]">Denzel</h3>
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs text-purple-300 border border-purple-800 px-2 py-0.5 rounded">Custom LLM</span>
+                                <a href="https://github.com" target="_blank" class="text-purple-300 hover:text-white transition-colors text-base" title="Project Link"><i class="fa-solid fa-link"></i></a>
+                            </div>
+                        </div>
+                        <p class="text-sm text-red-200/90 leading-relaxed mb-4">
+                            My own engineered LLM tailored for advanced natural language understanding and domain-specific generation. It delivers high-performance contextual reasoning, efficient inference capabilities, and flexible integration for specialized conversational and text-processing workflows.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag">LLM Architecture</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Transformers</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="w-full max-w-6xl mx-auto px-4 py-12">
+        <div class="crt-section-box">
+            <div class="section-title">
+                <span class="text-red-500">&gt;</span> 02. SKILLS // TECH_STACK & TOOLS
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+                <div class="border border-red-600/80 bg-black p-5 rounded shadow-[inset_0_0_12px_rgba(255,0,0,0.3)]">
+                    <h4 class="text-white font-bold text-base mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-brain text-red-500"></i> Artificial Intelligence & ML
+                    </h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag">Machine Learning</span>
+                        <span class="skill-tag">Neural Networks</span>
+                        <span class="skill-tag">Scikit-Learn</span>
+                        <span class="skill-tag">PyTorch / TF</span>
+                        <span class="skill-tag">Model Training</span>
+                        <span class="skill-tag">Evaluation Metrics</span>
+                    </div>
+                </div>
+
+                <div class="border border-red-600/80 bg-black p-5 rounded shadow-[inset_0_0_12px_rgba(255,0,0,0.3)]">
+                    <h4 class="text-white font-bold text-base mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-code text-red-500"></i> Languages & Tools
+                    </h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Prompt Engineering</span>
+                        <span class="skill-tag">Data Structures</span>
+                        <span class="skill-tag">SQL & Databases</span>
+                        <span class="skill-tag">Git & GitHub</span>
+                        <span class="skill-tag">Linux / Terminal</span>
+                    </div>
+                </div>
+
+                <div class="border border-red-600/80 bg-black p-5 rounded shadow-[inset_0_0_12px_rgba(255,0,0,0.3)]">
+                    <h4 class="text-white font-bold text-base mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-chart-line text-red-500"></i> Data Science & Math
+                    </h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag">Pandas & NumPy</span>
+                        <span class="skill-tag">Data Preprocessing</span>
+                        <span class="skill-tag">Statistical Analysis</span>
+                        <span class="skill-tag">Feature Engineering</span>
+                        <span class="skill-tag">Matplotlib / Seaborn</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8">
+                <h4 class="text-white font-bold text-sm mb-4 tracking-wider flex items-center gap-2">
+                    <span class="text-red-500">&gt;</span> EXTRA_CREATIVE_ENGINES & DESIGN_TOOLS
+                </h4>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    <div class="extra-skill-card p-4 rounded flex items-center gap-3">
+                        <i class="fa-solid fa-cube text-red-500 text-xl shadow-[0_0_8px_#ff0000]"></i>
+                        <div>
+                            <div class="text-white font-bold text-sm">Unity</div>
+                            <div class="text-xs text-red-400">Game Engine</div>
+                        </div>
+                    </div>
+                    <div class="extra-skill-card p-4 rounded flex items-center gap-3">
+                        <i class="fa-brands fa-figma text-red-500 text-xl shadow-[0_0_8px_#ff0000]"></i>
+                        <div>
+                            <div class="text-white font-bold text-sm">Figma</div>
+                            <div class="text-xs text-red-400">UI/UX Design</div>
+                        </div>
+                    </div>
+                    <div class="extra-skill-card p-4 rounded flex items-center gap-3">
+                        <i class="fa-solid fa-wand-magic-sparkles text-red-500 text-xl shadow-[0_0_8px_#ff0000]"></i>
+                        <div>
+                            <div class="text-white font-bold text-sm">Rive</div>
+                            <div class="text-xs text-red-400">Animations</div>
+                        </div>
+                    </div>
+                    <div class="extra-skill-card p-4 rounded flex items-center gap-3">
+                        <i class="fa-solid fa-shapes text-red-500 text-xl shadow-[0_0_8px_#ff0000]"></i>
+                        <div>
+                            <div class="text-white font-bold text-sm">Blender</div>
+                            <div class="text-xs text-red-400">3D Modeling</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="w-full max-w-6xl mx-auto px-4 py-12">
+        <div class="crt-section-box">
+            <div class="section-title">
+                <span class="text-red-500">&gt;</span> 03. EXPERIENCE // EDUCATION_TIMELINE
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
+                <div class="border-l-2 border-red-600 pl-6 space-y-6">
+                    <div class="relative">
+                        <div class="absolute -left-[31px] top-1 w-3 h-3 bg-red-600 rounded-full shadow-[0_0_8px_#ff0000]"></div>
+                        <span class="text-xs text-red-400 font-bold">[ 2021 — 2025 ]</span>
+                        <h3 class="text-white font-bold text-lg mt-1">B.Tech CSE [AI/ML]</h3>
+                        <p class="text-sm text-red-300 mt-1">GIET University, Gunupur</p>
+                    </div>
+
+                    <div class="relative">
+                        <div class="absolute -left-[31px] top-1 w-3 h-3 bg-red-600 rounded-full shadow-[0_0_8px_#ff0000]"></div>
+                        <span class="text-xs text-red-400 font-bold">[ 2019 — 2021 ]</span>
+                        <h3 class="text-white font-bold text-lg mt-1">Sr. Secondary [SCIENCE]</h3>
+                        <p class="text-sm text-red-300 mt-1">St. Xavier high school</p>
+                    </div>
+
+                    <div class="relative">
+                        <div class="absolute -left-[31px] top-1 w-3 h-3 bg-red-600 rounded-full shadow-[0_0_8px_#ff0000]"></div>
+                        <span class="text-xs text-red-400 font-bold">[ 2019 ]</span>
+                        <h3 class="text-white font-bold text-lg mt-1">Matric [CBSE]</h3>
+                        <p class="text-sm text-red-300 mt-1">St. Xavier high school</p>
+                    </div>
+                </div>
+
+                <div class="border-l-2 border-red-600 pl-6 space-y-6">
+                    <div class="relative">
+                        <div class="absolute -left-[31px] top-1 w-3 h-3 bg-red-600 rounded-full shadow-[0_0_8px_#ff0000]"></div>
+                        <span class="text-xs text-red-400 font-bold">[ HANDS-ON ML ]</span>
+                        <h3 class="text-white font-bold text-lg mt-1">Model Training & Evaluation Projects</h3>
+                        <p class="text-sm text-red-300 mt-1">Built and tuned supervised & unsupervised machine learning pipelines using Python, Scikit-Learn, and custom neural architectures.</p>
+                    </div>
+
+                    <div class="relative">
+                        <div class="absolute -left-[31px] top-1 w-3 h-3 bg-red-600 rounded-full shadow-[0_0_8px_#ff0000]"></div>
+                        <span class="text-xs text-red-400 font-bold">[ CERTIFICATIONS ]</span>
+                        <h3 class="text-white font-bold text-lg mt-1">AI & Prompt Engineering Certifications</h3>
+                        <p class="text-sm text-red-300 mt-1">Completed advanced training in prompt engineering methodologies, deep learning frameworks, and python algorithmic problem solving.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="socials" class="w-full max-w-6xl mx-auto px-4 py-12 mb-16">
+        <div class="crt-section-box">
+            <div class="section-title">
+                <span class="text-red-500">&gt;</span> 04. SOCIALS // CONNECT
+            </div>
+            
+            <p class="text-sm text-red-300 mb-6">
+                Connect with me across the grid or check out my code repositories and professional networks below:
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                <a href="https://github.com" target="_blank" class="retro-btn justify-center py-3 text-sm">
+                    <i class="fa-brands fa-github text-lg"></i> GitHub
+                </a>
+                <a href="https://linkedin.com" target="_blank" class="retro-btn justify-center py-3 text-sm">
+                    <i class="fa-brands fa-linkedin text-lg"></i> LinkedIn
+                </a>
+                <a href="https://twitter.com" target="_blank" class="retro-btn justify-center py-3 text-sm">
+                    <i class="fa-brands fa-x-twitter text-lg"></i> Twitter / X
+                </a>
+                <a href="mailto:abinash@portfolio.sys" class="retro-btn justify-center py-3 text-sm">
+                    <i class="fa-solid fa-envelope text-lg"></i> Email Me
+                </a>
+            </div>
+        </div>
+    </section>
+
+<script>
+const height = 44; 
+const width = 48; 
+let angle = 0;
+const colors = ['c-yellow', 'c-orange', 'c-red', 'c-dark-red'];
+
+let activeZeros = [];
+
+function render() {
+    let output = [];
+    
+    if (Math.random() < 0.03 && activeZeros.length < 4) {
+        let randY = Math.floor(Math.random() * height);
+        if (!activeZeros.some(z => z.y === randY)) {
+            let t_sample = randY * 0.13 + angle;
+            let fatnessFactor = 1.0 + 0.55 * Math.sin((randY / height) * Math.PI);
+            let currentRadius = 10.5 * fatnessFactor;
+            let x1_f = (width / 2 - 1) + Math.sin(t_sample) * currentRadius;
+            let x2_f = (width / 2 - 1) + Math.sin(t_sample + Math.PI) * currentRadius;
+            let left = Math.min(Math.round(x1_f), Math.round(x2_f));
+            let right = Math.max(Math.round(x1_f), Math.round(x2_f));
+            
+            if (left >= 0 && right < width) {
+                let randX = left + Math.floor(Math.random() * (right - left + 1));
+                activeZeros.push({ y: randY, x: randX, life: 240 });
+            }
+        }
+    }
+    
+    for (let i = activeZeros.length - 1; i >= 0; i--) {
+        activeZeros[i].life--;
+        if (activeZeros[i].life <= 0) {
+            activeZeros.splice(i, 1);
+        }
+    }
+    
+    for (let y = 0; y < height; y++) {
+        let lineChars = new Array(width).fill(' ');
+        
+        let t = y * 0.13 + angle;
+        let fatnessFactor = 1.0 + 0.55 * Math.sin((y / height) * Math.PI);
+        let currentRadius = 10.5 * fatnessFactor;
+        
+        let x1_f = (width / 2 - 1) + Math.sin(t) * currentRadius;
+        let x2_f = (width / 2 - 1) + Math.sin(t + Math.PI) * currentRadius;
+        
+        let z1 = Math.cos(t);
+        let z2 = Math.cos(t + Math.PI);
+        
+        let x1 = Math.round(x1_f);
+        let x2 = Math.round(x2_f);
+        
+        let left = Math.min(x1, x2);
+        let right = Math.max(x1, x2);
+        let leftZ = (x1 < x2) ? z1 : z2;
+        let rightZ = (x1 < x2) ? z2 : z1;
+        
+        if (left >= 0 && right < width) {
+            let leftColor = getColorClass(leftZ);
+            let rightColor = getColorClass(rightZ);
+            
+            let leftChar = (leftZ > 0 ? '█' : '▓');
+            let rightChar = (rightZ > 0 ? '█' : '▓');
+
+            let zeroPoint = activeZeros.find(z => z.y === y);
+
+            if (zeroPoint && zeroPoint.x === left) {
+                lineChars[left] = `<span class="${leftColor}">0</span>`;
+            } else {
+                lineChars[left] = `<span class="${leftColor}">${leftChar}</span>`;
+            }
+
+            if (zeroPoint && zeroPoint.x === right) {
+                lineChars[right] = `<span class="${rightColor}">0</span>`;
+            } else {
+                lineChars[right] = `<span class="${rightColor}">${rightChar}</span>`;
+            }
+            
+            for (let x = left + 1; x < right; x++) {
+                let depthVal = (leftZ + rightZ) / 2;
+                let connectorColor = getColorClass(depthVal);
+                
+                if (zeroPoint && zeroPoint.x === x) {
+                    lineChars[x] = `<span class="${connectorColor}">0</span>`;
+                } else if (depthVal > 0.4) {
+                    lineChars[x] = `<span class="${connectorColor}">=</span>`;
+                } else if (depthVal > -0.4) {
+                    lineChars[x] = `<span class="${connectorColor}">-</span>`;
+                } else {
+                    lineChars[x] = `<span class="${connectorColor}">.</span>`;
+                }
+            }
+        }
+        output.push(lineChars.join(''));
+    }
+    
+    const dnaElem = document.getElementById('dna');
+    if (dnaElem) {
+        dnaElem.innerHTML = output.join('\n');
+    }
+    angle += 0.011; 
+    requestAnimationFrame(render);
+}
+
+function getColorClass(z) {
+    let index = Math.round((z + 1) * (colors.length - 1) / 2);
+    index = Math.max(0, Math.min(colors.length - 1, index));
+    return colors[index];
+}
+
+requestAnimationFrame(render);
+
+const fontItems = [
+    { cls: 'font-opt-0', text: 'ABINASH' },
+    { cls: 'font-opt-1', text: 'ABINASH' },
+    { cls: 'font-opt-2', text: 'ABINASH' },
+    { cls: 'font-opt-3', text: 'ABINASH' },
+    { cls: 'font-opt-4', text: 'ABINASH' },
+    { cls: 'font-opt-5', text: 'ABINASH' },
+    { cls: 'font-opt-jp', text: 'アビナシュ' }
+];
+let currentFontIndex = 0;
+
+function triggerSciFiGlitch() {
+    const spanElem = document.getElementById('glitch-name-span');
+    if (!spanElem) return;
+
+    spanElem.classList.add('glitch-active');
+
+    setTimeout(() => {
+        fontItems.forEach(item => spanElem.classList.remove(item.cls));
+        currentFontIndex = (currentFontIndex + 1) % fontItems.length;
+        spanElem.classList.add(fontItems[currentFontIndex].cls);
+        spanElem.innerText = fontItems[currentFontIndex].text;
+    }, 225);
+
+    setTimeout(() => {
+        spanElem.classList.remove('glitch-active');
+    }, 450);
+}
+
+setInterval(triggerSciFiGlitch, 20000);
+
+const paragraphs = [
+    "I’m a CSE graduate fresher specializing in Artificial Intelligence and Machine Learning. Skilled in Python, Scikit-Learn, and neural network architectures, with hands-on project experience in model training, evaluation, and prompt engineering.",
+    "Passionate about building intelligent systems that solve real-world problems. Always eager to learn cutting-edge technologies, optimize algorithms, and turn complex datasets into meaningful insights."
+];
+
+const fullText = paragraphs[0] + "\n\n" + paragraphs[1];
+const targetElem = document.getElementById('typed-text');
+
+let charIndex = 0;
+let isDeleting = false;
+let typingSpeed = 32;
+let deletingSpeed = 18;
+let pauseTime = 3000;
+
+function typeLoop() {
+    if (!targetElem) return;
+    if (!isDeleting) {
+        charIndex++;
+        targetElem.innerHTML = fullText.substring(0, charIndex) + '<span class="cursor"></span>';
+        
+        if (charIndex === fullText.length) {
+            setTimeout(() => {
+                isDeleting = true;
+                typeLoop();
+            }, pauseTime);
+            return;
+        }
+        setTimeout(typeLoop, typingSpeed);
+    } else {
+        charIndex--;
+        targetElem.innerHTML = fullText.substring(0, charIndex) + '<span class="cursor"></span>';
+        
+        if (charIndex === 0) {
+            setTimeout(() => {
+                isDeleting = false;
+                typeLoop();
+            }, 800);
+            return;
+        }
+        setTimeout(typeLoop, deletingSpeed);
+    }
+}
+
+setTimeout(typeLoop, 1100);
+</script>
+</body>
+</html>
